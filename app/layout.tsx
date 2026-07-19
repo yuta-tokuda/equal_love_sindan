@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Mochiy_Pop_One, Zen_Maru_Gothic } from "next/font/google";
 
 import { Footer } from "@/components/footer";
@@ -53,6 +55,8 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         <Header />
         <main className="mx-auto w-full max-w-md flex-1 px-4 py-4">{children}</main>
         <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
