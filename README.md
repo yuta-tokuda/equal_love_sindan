@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# =LOVE 推し診断
 
-## Getting Started
+指原莉乃プロデュースのアイドルグループ「=LOVE（イコールラブ / イコラブ）」の現役メンバーから、あなたにぴったりの推しを診断するファンメイドの Web サービスです。
 
-First, run the development server:
+> **注意**: 本サービスは非公式のファンメイド作品です。=LOVE および関連団体とは一切関係ありません。
+
+## サービス概要
+
+質問に答えていくと、性格・価値観の傾向から相性の良いメンバーを算出します。
+
+- 所要時間: 約1分
+- 対象: =LOVE 現役メンバー 10名
+- 結果内容:
+  - ぴったりのメンバーと一致率
+  - 診断コメント・プロフィール
+  - 相性ランキング（上位3名）
+  - センター曲・ソロ曲（公式 YouTube MV へのリンク付き）
+  - メンバー個人の SNS / 公式プロフィールへのリンク
+
+## 使い方
+
+1. トップページで「診断スタート」を押す
+2. 質問に答えていく（途中から戻ることも可能）
+3. 結果ページでぴったりのメンバーを確認する
+
+診断の途中回答はブラウザの `localStorage` に保存されます。サーバー側に個人情報は送りません。
+
+## 技術スタック
+
+- [Next.js](https://nextjs.org/)（App Router）
+- React / TypeScript
+- Tailwind CSS
+- pnpm
+
+## 開発環境のセットアップ
+
+### 必要条件
+
+- Node.js（推奨: LTS）
+- pnpm
+
+### インストールと起動
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開いてください。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### その他のコマンド
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm build   # 本番用ビルド
+pnpm start   # 本番サーバー起動
+pnpm lint    # ESLint 実行
+```
 
-## Learn More
+## プロジェクト構成（抜粋）
 
-To learn more about Next.js, take a look at the following resources:
+```text
+app/            # ページ（トップ / 診断 / 結果）
+components/     # UI コンポーネント
+data/           # メンバー情報・質問データ
+lib/            # 診断ロジック・localStorage 操作
+types/          # 型定義
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ライセンス・免責
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 本リポジトリはファンによる非公式プロジェクトです
+- メンバー名・楽曲名・プロフィール情報などの権利は各権利者に帰属します
+- 商用利用は想定していません
