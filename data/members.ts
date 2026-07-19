@@ -215,7 +215,7 @@ export const members = [
     ],
     profile: {
       reading: "のぐち いおり",
-      nickname: "いおりん",
+      nickname: "いーちゃん",
       birthday: "2000年4月26日",
       birthplace: "茨城県",
       height: "161cm",
