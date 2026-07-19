@@ -20,9 +20,30 @@ const mochiy = Mochiy_Pop_One({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
   title: "=LOVE 推し診断",
   description: "質問に答えるだけで相性の良いメンバーを診断できるサービス",
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    title: "=LOVE 推し診断",
+    description: "質問に答えるだけで相性の良いメンバーを診断できるサービス",
+    type: "website",
+    locale: "ja_JP",
+    images: [
+      {
+        url: "/og-top.png",
+        alt: "=LOVE 推し診断 TOP画面",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "=LOVE 推し診断",
+    description: "質問に答えるだけで相性の良いメンバーを診断できるサービス",
+    images: ["/og-top.png"],
+  },
 };
 
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
