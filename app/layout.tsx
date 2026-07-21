@@ -5,6 +5,12 @@ import { Mochiy_Pop_One, Zen_Maru_Gothic } from "next/font/google";
 
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import {
+  SITE_ALTERNATE_NAME,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  getSiteUrl,
+} from "@/lib/site";
 
 import "./globals.css";
 
@@ -22,36 +28,58 @@ const mochiy = Mochiy_Pop_One({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
-  title: "=LOVE 推し診断",
-  description: "質問に答えるだけで相性の良いメンバーを診断できるサービス",
   metadataBase: new URL(siteUrl),
+  title: SITE_NAME,
+  applicationName: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
-    title: "=LOVE 推し診断",
-    description: "質問に答えるだけで相性の良いメンバーを診断できるサービス",
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
     type: "website",
     locale: "ja_JP",
+    url: "/",
     images: [
       {
         url: "/og-top.png",
-        alt: "=LOVE 推し診断 TOP画面",
+        alt: `${SITE_NAME} TOP画面`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "=LOVE 推し診断",
-    description: "質問に答えるだけで相性の良いメンバーを診断できるサービス",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
     images: ["/og-top.png"],
   },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_NAME,
+  alternateName: SITE_ALTERNATE_NAME,
+  url: `${siteUrl}/`,
 };
 
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <html lang="ja" className={`${zenMaru.variable} ${mochiy.variable}`}>
       <body className="bg-app-shell flex min-h-screen flex-col text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         <Header />
         <main className="mx-auto w-full max-w-md flex-1 px-4 py-4">{children}</main>
         <Footer />
